@@ -1,0 +1,13 @@
+mongodb:
+  host: gsdpi-mongodb.default.svc.cluster.local
+  port: 27017
+  authentication-database: admin
+  database: configuration
+  username: root
+  password: 46cfdg1oXL
+
+minio:
+  host: uniovi-hl.default.svc.cluster.local
+  port: 9000
+  access_key: RS6P1ApnSrDf9MaS
+  secret_key: weQJEUUEVfNZV1Zs0MnA0e9CT2d71jSK
