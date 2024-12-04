@@ -35,6 +35,7 @@ pip install pyaml-env
 pip install mongoengine
 pip install minio
 pip install pandas
+pip install pyarrow
 ```
 
 Installation your python pipeline packages in your virtual environment in development mode:
