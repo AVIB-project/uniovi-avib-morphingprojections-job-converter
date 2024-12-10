@@ -8,7 +8,7 @@
 
 ```
 $ putup --markdown uniovi-avib-morphingprojections-job-converter -p morphingprojections_job_converter \
-      -d "Uniovi AVIB Morphing Projection Job Converter Service." \
+      -d "Uniovi AVIB Morphing Projection Job Converter." \
       -u https://dev.azure.com/gsdpi/avib/_git/uniovi-avib-morphingprojections-job-converter
 ```
 
@@ -30,56 +30,45 @@ $ pip install -e .
 ```
 
 ```
-pip install tox
-pip install pyaml-env
-pip install mongoengine
-pip install minio
-pip install pandas
-pip install pyarrow
+$ pip install tox
+$ pip install pyaml-env
+$ pip install pandas
+$ pip install pyarrow
+$ pip install minio
 ```
 
 Installation your python pipeline packages in your virtual environment in development mode:
 
 ```
-pip freeze > requirements.txt
+$ pip freeze > requirements.txt
 ```
 
 # Docker
 
-build image for local environment:
-
-```
-docker build -t uniovi-avib-morphingprojections-job-converter:1.1.0 .
-
-docker tag uniovi-avib-morphingprojections-job-converter:1.1.0 avibdocker.azurecr.io/uniovi-avib-morphingprojections-job-converter:1.1.0
-
-docker push avibdocker.azurecr.io/uniovi-avib-morphingprojections-job-converter:1.1.0
-```
-
 build image for local minikube environment:
 
 ```
-docker build --build-arg ARG_PYTHON_PROFILES_ACTIVE=minikube -t uniovi-avib-morphingprojections-job-converter:1.1.0 .
+docker build -t morphingprojections-job-converter:1.1.0 .
 
-docker tag uniovi-avib-morphingprojections-job-converter:1.1.0 avibdocker.azurecr.io/uniovi-avib-morphingprojections-job-converter:1.1.0
+docker tag morphingprojections-job-converter:1.1.0 gsdpi/morphingprojections-job-converter:1.1.0
 
-docker push avibdocker.azurecr.io/uniovi-avib-morphingprojections-job-converter:1.1.0
+docker push gsdpi/morphingprojections-job-converter:1.1.0
 ```
 
 build image for avib environment:
 
 ```
-docker build --build-arg ARG_PYTHON_PROFILES_ACTIVE=avib -t uniovi-avib-morphingprojections-job-converter:1.1.0 .
+docker build --build-arg ARG_PYTHON_PROFILES_ACTIVE=avib -t morphingprojections-job-converter:1.1.0 .
 
-docker tag uniovi-avib-morphingprojections-job-converter:1.1.0 avibdocker.azurecr.io/uniovi-avib-morphingprojections-job-converter:1.1.0
+docker tag morphingprojections-job-converter:1.1.0 gsdpi/morphingprojections-job-converter:1.1.0
 
-docker push avibdocker.azurecr.io/uniovi-avib-morphingprojections-job-converter:1.1.0
+docker push gsdpi/morphingprojections-job-converter:1.1.0
 ```
 
 Execute job locally for a case_id 65cdc989fa8c8fdbcefac01e:
 
 ```
-docker run --rm uniovi-avib-morphingprojections-job-converter:1.1.0 python src/morphingprojections_job_converter/service.py --bucket 65cd021098d02623c46da92d --key 65cd02d9e6ba3947be825ac8/673cd073190c686d772d7bfa/datamatrix.csv
+docker run --rm uniovi-avib-morphingprojections-job-converter:1.1.0 python src/morphingprojections_job_converter/service.py --organization-id  65cd021098d02623c46da92d --project-id 65cd05c798d02623c46da92e --case-id 65cdc989fa8c8fdbcefac01e --file-name datamatrix.csv
 ```
 
 ## Note
